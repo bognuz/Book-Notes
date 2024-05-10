@@ -1,0 +1,17 @@
+html {
+
+ 
+  background-image: url("../images/WoodPicture.jpeg")
+}
+
+
+body {
+
+  color: white;
+}
+
+.header{
+  display: flex;
+  flex-direction: column;
+  
+}
