@@ -1,4 +1,5 @@
 import express from "express";
+import bodyParser from "body-parser";
 
 
 
@@ -7,10 +8,11 @@ import express from "express";
 const app = express();
 const port = 3000;
 
+
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-// Set EJS as the view engine
-app.set('view engine', 'ejs');
+
 
 app.get("/", (req,res) => {
 
@@ -26,6 +28,10 @@ app.post("/add", (req, res) => {
 
 app.post("/addbook", (req, res) => {
 
+  const ISBN = req.body.ISBN;
+  const note = req.body.note;
+  console.log(ISBN);
+  console.log(note);
   res.redirect("/");
 })
 
