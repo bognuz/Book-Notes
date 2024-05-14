@@ -1,5 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
+import pg from "pg";
+import axios from "axios";
 
 
 
@@ -11,6 +13,8 @@ const port = 3000;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
+
+var bookList = [];
 
 
 
