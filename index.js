@@ -21,7 +21,7 @@ var bookList = [];
 app.get("/", (req,res) => {
 
 
-  res.render("index.ejs");
+  res.render("index.ejs", {bookList: bookList});
 })
 
 
@@ -34,8 +34,21 @@ app.post("/addbook", (req, res) => {
 
   const ISBN = req.body.ISBN;
   const note = req.body.note;
+  const rating = req.body.rating;
+  const dateRead = new Date();
+
   console.log(ISBN);
   console.log(note);
+  console.log(rating);
+  console.log(dateRead);
+  
+  const isbnPattern = /^(?:\d{10}|\d{13})$/;
+  if (!isbnPattern.test(ISBN)) {
+    res.render("add.ejs", { error: "Invalid ISBN format." });
+    return;
+  }
+
+  bookList.push({ISBN: ISBN, note: note, rating: rating, dateRead: dateRead});
   res.redirect("/");
 })
 

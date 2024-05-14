@@ -5,7 +5,20 @@
   <input type="submit" value="Add new book note"/>
  </form>
 
+
+<% bookList.forEach(function(entry) { %>
  
+<label>
+  <hr>
+  <h3>Books Name</h3>
+ <label>My Note: </label> <%=entry.note%>  <br>
+  <label>My Rating </label><%=entry.rating%> <br>
+
+  <label>Date Read: </label><%=entry.dateRead%>
+</label>
+
+<%})%>
+ <hr>
 
 </body>
 
