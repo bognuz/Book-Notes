@@ -10,11 +10,13 @@
  
 <label>
   <hr>
-  <h3>Books Name</h3>
+<h3><%=entry.bookTitle%></h3>
+<img src="<%=entry.bookCover%>">
+<label>Author:</label> <%=entry.bookAuthor%> <br>
  <label>My Note: </label> <%=entry.note%>  <br>
   <label>My Rating </label><%=entry.rating%> <br>
 
-  <label>Date Read: </label><%=entry.dateRead%>
+  <label>Note Added: </label><%=entry.dateRead%>
 </label>
 
 <%})%>

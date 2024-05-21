@@ -30,17 +30,14 @@ app.post("/add", (req, res) => {
   res.render("add.ejs");
 })
 
-app.post("/addbook", (req, res) => {
+app.post("/addbook", async (req, res) => {
 
   const ISBN = req.body.ISBN;
   const note = req.body.note;
   const rating = req.body.rating;
-  const dateRead = new Date();
+  const date = new Date();
+  const dateRead = date.toLocaleDateString('en-GB');
 
-  console.log(ISBN);
-  console.log(note);
-  console.log(rating);
-  console.log(dateRead);
   
   const isbnPattern = /^(?:\d{10}|\d{13})$/;
   if (!isbnPattern.test(ISBN)) {
@@ -48,8 +45,26 @@ app.post("/addbook", (req, res) => {
     return;
   }
 
-  bookList.push({ISBN: ISBN, note: note, rating: rating, dateRead: dateRead});
+  const apiRequest = await axios.get(
+    `https://openlibrary.org/api/books?bibkeys=ISBN:${ISBN}&format=json&jscmd=data`, {headers: {'User-Agent': 'BookNotes (nuzhnyy@live.dk)'}}
+  );
+
+const dataFromApi = apiRequest.data[`ISBN:${ISBN}`];
+console.log(dataFromApi);
+
+if(dataFromApi) {
+  const bookTitle = dataFromApi.title;
+  const bookAuthor = dataFromApi.authors[0].name;
+  const bookCover = dataFromApi.cover.medium;
+  bookList.push({ISBN: ISBN, bookTitle: bookTitle, bookCover: bookCover, bookAuthor: bookAuthor, note: note, rating: rating, dateRead: dateRead});
   res.redirect("/");
+} else{
+
+  res.render("add.ejs", {error: "Book is not found"});
+}
+
+
+
 })
 
 
