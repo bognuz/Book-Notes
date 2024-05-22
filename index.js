@@ -10,17 +10,32 @@ import axios from "axios";
 const app = express();
 const port = 3000;
 
+const db = new pg.Client({
+  user: "postgres",
+  host: "localhost",
+  database: "BookNotes",
+  password: "Kode1234",
+  port: 5432,
+});
+db.connect();
+
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
+
+
 var bookList = [];
 
 
+app.get("/", async(req,res) => {
 
-app.get("/", (req,res) => {
+  const allBooks = await db.query("SELECT * FROM books");
 
-
+  allBooks.rows.forEach(book => {
+    bookList.push(book);
+  })
+  
   res.render("index.ejs", {bookList: bookList});
 })
 
@@ -56,7 +71,10 @@ if(dataFromApi) {
   const bookTitle = dataFromApi.title;
   const bookAuthor = dataFromApi.authors[0].name;
   const bookCover = dataFromApi.cover.medium;
-  bookList.push({ISBN: ISBN, bookTitle: bookTitle, bookCover: bookCover, bookAuthor: bookAuthor, note: note, rating: rating, dateRead: dateRead});
+
+
+  await db.query ('INSERT INTO books (isbn, booktitle,bookcover,bookauthor,note,rating,dateread) VALUES ($1, $2, $3, $4, $5, $6, $7)', [ISBN, bookTitle,bookCover, bookAuthor, note, rating, dateRead]);
+  
   res.redirect("/");
 } else{
 

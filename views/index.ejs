@@ -10,14 +10,18 @@
  
 <label>
   <hr>
-<h3><%=entry.bookTitle%></h3>
-<img src="<%=entry.bookCover%>">
-<label>Author:</label> <%=entry.bookAuthor%> <br>
+<h3><%=entry.booktitle%></h3>
+<img src="<%=entry.bookcover%>">
+<label>ISBN</label> <%=entry.isbn%>
+<label>Author:</label> <%=entry.bookauthor%> <br>
  <label>My Note: </label> <%=entry.note%>  <br>
   <label>My Rating </label><%=entry.rating%> <br>
 
-  <label>Note Added: </label><%=entry.dateRead%>
+  <label>Note Added: </label><%=entry.dateread%>
 </label>
+
+<input type="submit" value="Edit">
+<input type="submit" value="Delete">
 
 <%})%>
  <hr>
