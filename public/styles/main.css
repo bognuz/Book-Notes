@@ -1,12 +1,12 @@
 html {
+  background-image: url("../images/WoodPicture.jpeg");
+  background-size: cover;  /* Ensure the background image covers the entire viewport */
 
- 
-  background-image: url("../images/WoodPicture.jpeg")
+  font-family: Arial, sans-serif;  /* Set a fallback font-family */
 }
 
-
 body {
-
   color: white;
+
 }
 
