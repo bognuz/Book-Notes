@@ -1,0 +1,24 @@
+<%- include("./partials/header.ejs")%>
+
+
+<form action="/bookEdited" method="post">
+<h1>Hello</h1>
+<h3><%=book.booktitle%></h3>
+<img src="<%=book.bookcover%>">
+<label>ISBN: </label> <%=book.isbn%> <br>
+<label>Author:</label> <%=book.bookauthor%> <br>
+ <label>My Note: </label>  <textarea name="note"><%= book.note %></textarea> <br>
+  <label>My Rating </label> <select name="rating">
+    <% for (let i = 1; i <= 5; i++) { %>
+      <option value="<%= i %>" <%= book.rating == i ? 'selected' : '' %>><%= i %></option>
+    <% } %>
+  </select><br></select><br>
+
+  <label>Note Added: </label><%=book.dateread.toLocaleDateString('en-GB')%>
+</label>
+
+<input type="hidden" name="id" value="<%= book.id %>">
+<input type="submit" value="Update post">
+</form>
+
+<%- include("./partials/footer.ejs")%>

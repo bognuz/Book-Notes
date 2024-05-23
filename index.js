@@ -25,20 +25,37 @@ app.use(express.static("public"));
 
 
 
-var bookList = [];
 
 
-app.get("/", async(req,res) => {
-
+async function getBooks(){
   const allBooks = await db.query("SELECT * FROM books");
-
+  let bookList = [];
+  
   allBooks.rows.forEach(book => {
     bookList.push(book);
   })
+
+  return bookList;
+
+};
+
+app.get("/", async(req,res) => {
+
+const bookList = await getBooks();
   
   res.render("index.ejs", {bookList: bookList});
 })
 
+app.get("/edit", async(req,res) => {
+
+  const bookId = req.query.id;
+
+const query = await db.query('Select * FROM books WHERE id=($1)', [bookId]);
+ const book = query.rows[0];
+
+
+res.render("edit.ejs", {book: book});
+})
 
 app.post("/add", (req, res) => {
 
@@ -60,12 +77,16 @@ app.post("/addbook", async (req, res) => {
     return;
   }
 
-  const apiRequest = await axios.get(
-    `https://openlibrary.org/api/books?bibkeys=ISBN:${ISBN}&format=json&jscmd=data`, {headers: {'User-Agent': 'BookNotes (nuzhnyy@live.dk)'}}
-  );
+ 
+    const apiRequest = await axios.get(
+      `https://openlibrary.org/api/books?bibkeys=ISBN:${ISBN}&format=json&jscmd=data`, {headers: {'User-Agent': 'BookNotes (nuzhnyy@live.dk)'}}
+    );
+
 
 const dataFromApi = apiRequest.data[`ISBN:${ISBN}`];
 console.log(dataFromApi);
+
+
 
 if(dataFromApi) {
   const bookTitle = dataFromApi.title;
@@ -82,9 +103,31 @@ if(dataFromApi) {
 }
 
 
-
 })
 
+app.post("/bookEdited", async (req, res) =>{
+
+  const id = req.body.id;
+  const note = req.body.note;
+  const rating = req.body.rating;
+  const date = new Date();
+  const dateRead = date.toLocaleDateString('en-GB');
+  await db.query('UPDATE books SET note = $1, rating = $2, dateread = $3 WHERE id = $4', [note, rating, dateRead, id]);
+
+
+  res.redirect("/");
+
+});
+
+app.post("/deleteBook", async (req, res) => {
+  const id = req.body.id;
+
+ 
+  await db.query('DELETE FROM books WHERE id = $1', [id]);
+  res.redirect("/");
+
+
+});
 
 app.listen (port, () => {
   console.log(`Server is op and running on port${port}`)
