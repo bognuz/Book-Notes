@@ -2,11 +2,78 @@ html {
   background-image: url("../images/WoodPicture.jpeg");
   background-size: cover;  /* Ensure the background image covers the entire viewport */
 
-  font-family: Arial, sans-serif;  /* Set a fallback font-family */
+  font-family: Arial, sans-serif;  
 }
 
 body {
   color: white;
+}
+
+
+.header{
+  text-align: center;
+}
+
+
+footer{
+  text-align: center;
+}
+
+.addButton{
+  background-color: rgb(147, 209, 55);
+  color: white;
+  border: none;
+  width: 200px;
+  height: 50px;
+  border-radius: 20px;
+  
+}
+
+.addButton:hover{
+  background-color: rgb(113, 161, 41);
+}
+
+
+.addButton:active{
+  background-color: rgb(197, 221, 161);
+}
+
+
+.addClass{
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.editButton{
+  background-color: rgb(13, 201, 248);
+  color: white;
+  border: none;
+  width: 80px;
+  height: 40px;
+  border-radius: 20px;
 
 }
 
+.deleteButton{
+  background-color: rgb(211, 54, 15);
+  color: white;
+  border: none;
+  width: 80px;
+  height: 40px;
+  border-radius: 20px;
+
+}
+
+.container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+ 
+}
+
+img{
+  float: left;
+}
