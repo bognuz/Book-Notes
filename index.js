@@ -5,7 +5,7 @@ import axios from "axios";
 import dotenv from "dotenv";
 
 
-dotenv.config({ path: "./data.env" });
+
 
 
 const app = express();
