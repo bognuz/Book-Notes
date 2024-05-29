@@ -12,24 +12,26 @@
  
 
   <hr>
+<div class="bookObject">
+  <img src="<%=entry.bookcover%>">
 
-<h3><%=entry.booktitle%></h3>
-<img src="<%=entry.bookcover%>"> <br>
+ <br>
+<div class="bookInfo">
+  <h3><%=entry.booktitle%></h3>
 <label>ISBN: </label> <%=entry.isbn%> <br>
 <label>Author:</label> <%=entry.bookauthor%> <br>
  <label>My Note: </label> <%=entry.note%>  <br>
   <label>My Rating </label><%=entry.rating%> <br>
 
   <label>Note Added: </label><%=entry.dateread.toLocaleDateString('en-GB')%>
+</div>
+</div>
 
-
-<div>
+<div class="bookFunctions">
 <form action="/edit" method="get">
   <input type="hidden" name="id" value="<%= entry.id %>">
   <input type="submit" value="Edit"  class="editButton"/>
  </form>
-</div>
-<div>
  <form action="/deleteBook" method="post" onsubmit="return confirmDelete('<%= entry.booktitle %>');">
   <input type="hidden" name="id" value="<%= entry.id %>">
   <input type="submit" value="Delete book" class="deleteButton">

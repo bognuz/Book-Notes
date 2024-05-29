@@ -7,6 +7,11 @@ html {
 
 body {
   color: white;
+  display: flex;
+    flex-direction: column;
+    place-items: center;
+    max-width: 40em;
+  
 }
 
 
@@ -33,6 +38,13 @@ footer{
   background-color: rgb(113, 161, 41);
 }
 
+.editButton:hover{
+  background-color:  rgb(25, 160, 194);
+}
+
+.editButton:active{
+  background-color: rgb(20, 219, 209);
+}
 
 .addButton:active{
   background-color: rgb(197, 221, 161);
@@ -66,14 +78,28 @@ footer{
 
 }
 
-.container{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
- 
+.deleteButton:hover{
+  background-color:  rgb(255, 132, 101);
 }
 
-img{
-  float: left;
+.deleteButton:active{
+  background-color: rgb(233, 188, 152);
 }
+
+h3 {
+  color: rgb(214, 151, 14);
+}
+
+
+.bookFunctions{
+
+  display: flex;
+ justify-content: space-between;
+}
+
+
+.bookObject{
+  display: flex;
+  justify-content: space-around;
+}
+
