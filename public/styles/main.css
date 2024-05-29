@@ -1,105 +1,125 @@
 html {
   background-image: url("../images/WoodPicture.jpeg");
-  background-size: cover;  /* Ensure the background image covers the entire viewport */
-
-  font-family: Arial, sans-serif;  
+  background-size: cover;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
 }
 
 body {
-  color: white;
   display: flex;
-    flex-direction: column;
-    place-items: center;
-    max-width: 40em;
-  
-}
-
-
-.header{
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  color: white;
   text-align: center;
 }
 
-
-footer{
-  text-align: center;
+.header {
+  margin-bottom: 2em;
 }
 
-.addButton{
-  background-color: rgb(147, 209, 55);
+.container {
+  width: 100%;
+  max-width: 40em;
+  margin: 0 auto;
+  padding: 1em;
+  box-sizing: border-box;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+}
+
+.addClass {
+  margin-bottom: 1.5em;
+}
+
+.addButton, .editButton, .deleteButton {
   color: white;
   border: none;
-  width: 200px;
-  height: 50px;
   border-radius: 20px;
-  
+  cursor: pointer;
+  margin: 0.5em;
 }
 
-.addButton:hover{
+.addButton {
+  background-color: rgb(147, 209, 55);
+  width: 200px;
+  height: 50px;
+}
+
+.addButton:hover {
   background-color: rgb(113, 161, 41);
 }
 
-.editButton:hover{
-  background-color:  rgb(25, 160, 194);
-}
-
-.editButton:active{
-  background-color: rgb(20, 219, 209);
-}
-
-.addButton:active{
+.addButton:active {
   background-color: rgb(197, 221, 161);
 }
 
-
-.addClass{
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.editButton{
+.editButton {
   background-color: rgb(13, 201, 248);
-  color: white;
-  border: none;
   width: 80px;
   height: 40px;
-  border-radius: 20px;
-
 }
 
-.deleteButton{
+.editButton:hover {
+  background-color: rgb(25, 160, 194);
+}
+
+.editButton:active {
+  background-color: rgb(20, 219, 209);
+}
+
+.deleteButton {
   background-color: rgb(211, 54, 15);
-  color: white;
-  border: none;
   width: 80px;
   height: 40px;
-  border-radius: 20px;
-
 }
 
-.deleteButton:hover{
-  background-color:  rgb(255, 132, 101);
+.deleteButton:hover {
+  background-color: rgb(255, 132, 101);
 }
 
-.deleteButton:active{
+.deleteButton:active {
   background-color: rgb(233, 188, 152);
 }
 
 h3 {
   color: rgb(214, 151, 14);
+  margin: 0.5em 0;
 }
 
-
-.bookFunctions{
-
+.bookObject {
   display: flex;
- justify-content: space-between;
+  margin: 1em 0;
+  align-items: flex-start;
 }
 
+.bookObject img {
+  max-width: 100%;
+  height: auto;
+  margin-right: 70px;
+}
 
-.bookObject{
+.bookInfo {
+  flex: 1;
+  text-align: left;
+  max-width: calc(100% - 150px); /* Adjust based on the width of the image */
+}
+
+.bookFunctions {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 1em;
 }
+
+footer {
+  margin-top: 2em;
+}
+
+
 

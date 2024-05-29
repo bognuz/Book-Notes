@@ -1,23 +1,30 @@
-<%- include("./partials/header.ejs")%>
+<%- include("./partials/header.ejs") %>
 
+<div class="container">
+  <div class="addForm">
+    <form action="/addbook" method="post">
+      <h2>Add a new book note</h2>
+      <div class="inputGroup">
+        <label for="ISBN">Write ISBN To find a book</label> <br>
+        <input type="text" id="ISBN" name="ISBN" placeholder="<%= typeof error !== 'undefined' ? error : '' %>" >
+      </div>
+      <div class="inputGroup">
+        <label for="note">Write your note here</label> <br>
+        <textarea id="note" name="note" rows="5"></textarea>
+      </div>
+      <div class="inputGroup">
+        <label for="rating">Rate the book</label>
+        <select id="rating" name="rating">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+      </div>
+      <input type="submit" value="Add New Note" class="addButton">
+    </form>
+  </div>
+</div>
 
-
-<form action="/addbook" method="post" >
- <div>
-  <label> Write ISBN To find a book</label> <input type="text" name="ISBN" placeholder="<%= typeof error !== 'undefined' ? error : '' %>" > <br>
-  <label>Write your note here</label> <input type="textarea" name="note" > <br>
-  <label>Rate the book</label><select name="rating">
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    <option value="5">5</option>
-  </select> <br>
-  <input type="submit" value="Add New note" class="addButton">
- </div>
-
-</form>
-
-
-
-<%- include("./partials/footer.ejs")%>
+<%- include("./partials/footer.ejs") %>

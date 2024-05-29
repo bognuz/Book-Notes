@@ -1,48 +1,38 @@
-<%- include("./partials/header.ejs")%>
+<%- include("./partials/header.ejs") %>
 
-<div class="addClass">
-
-
- <form action="/add" method="post">
-  <input type="submit" value="Add new book note" class="addButton"/>
- </form>
-</div>
 <div class="container">
-<% bookList.forEach(function(entry) { %>
- 
+  <div class="addClass">
+    <form action="/add" method="post">
+      <input type="submit" value="Add new book note" class="addButton" />
+    </form>
+  </div>
 
+  <% bookList.forEach(function(entry) { %>
+    <hr>
+    <div class="bookObject">
+      <img src="<%= entry.bookcover %>" alt="Book cover">
+      <div class="bookInfo">
+        <h3><%= entry.booktitle %></h3>
+        <p><label>ISBN: </label> <%= entry.isbn %></p>
+        <p><label>Author: </label> <%= entry.bookauthor %></p>
+        <p><label>My Note: </label> <%= entry.note %></p>
+        <p><label>My Rating: </label> <%= entry.rating %></p>
+        <p><label>Note Added: </label> <%= entry.dateread.toLocaleDateString('en-GB') %></p>
+      </div>
+    </div>
+    <div class="bookFunctions">
+      <form action="/edit" method="get">
+        <input type="hidden" name="id" value="<%= entry.id %>">
+        <input type="submit" value="Edit" class="editButton" />
+      </form>
+      <form action="/deleteBook" method="post" onsubmit="return confirmDelete('<%= entry.booktitle %>');">
+        <input type="hidden" name="id" value="<%= entry.id %>">
+        <input type="submit" value="Delete book" class="deleteButton" />
+      </form>
+    </div>
+  <% }) %>
   <hr>
-<div class="bookObject">
-  <img src="<%=entry.bookcover%>">
-
- <br>
-<div class="bookInfo">
-  <h3><%=entry.booktitle%></h3>
-<label>ISBN: </label> <%=entry.isbn%> <br>
-<label>Author:</label> <%=entry.bookauthor%> <br>
- <label>My Note: </label> <%=entry.note%>  <br>
-  <label>My Rating </label><%=entry.rating%> <br>
-
-  <label>Note Added: </label><%=entry.dateread.toLocaleDateString('en-GB')%>
 </div>
-</div>
-
-<div class="bookFunctions">
-<form action="/edit" method="get">
-  <input type="hidden" name="id" value="<%= entry.id %>">
-  <input type="submit" value="Edit"  class="editButton"/>
- </form>
- <form action="/deleteBook" method="post" onsubmit="return confirmDelete('<%= entry.booktitle %>');">
-  <input type="hidden" name="id" value="<%= entry.id %>">
-  <input type="submit" value="Delete book" class="deleteButton">
-</form>
-</div>
-
-
-<%})%>
- <hr>
-</div>
-</body>
 
 <script>
   function confirmDelete(bookTitle) {
@@ -50,6 +40,4 @@
   }
 </script>
 
-
-
-<%- include("./partials/footer.ejs")%>
+<%- include("./partials/footer.ejs") %>

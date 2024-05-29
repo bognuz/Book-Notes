@@ -1,24 +1,36 @@
-<%- include("./partials/header.ejs")%>
+<%- include("./partials/header.ejs") %>
 
+<div class="container">
+  <div class="editForm">
+    <form action="/bookEdited" method="post">
+      <h2>Modify your note here</h2>
+      <div class="imageContainer">
+        <img src="<%= book.bookcover %>" alt="<%= book.booktitle %> cover" class="bookCover">
+      </div>
+      <div class="editFields">
+        <div class="inputGroup">
+          <label for="author">Author:</label><p><%= book.bookauthor %></p>
+        </div>
+        <div class="inputGroup">
+          <label for="ISBN">ISBN:</label><p><%= book.isbn %></p>
+        </div>
+        <div class="inputGroup">
+          <label for="note">My Note:</label> <br>
+          <textarea id="note" name="note" rows="8"><%= book.note %></textarea>
+        </div>
+        <div class="inputGroup">
+          <label for="rating">My Rating:</label>
+          <select id="rating" name="rating">
+            <% for (let i = 1; i <= 5; i++) { %>
+              <option value="<%= i %>" <%= book.rating == i ? 'selected' : '' %>><%= i %></option>
+            <% } %>
+          </select>
+        </div>
+      </div>
+      <input type="hidden" name="id" value="<%= book.id %>">
+      <input type="submit" value="Update Post" class="addButton">
+    </form>
+  </div>
+</div>
 
-<form action="/bookEdited" method="post">
-<h2>Modify your note here</h2>
-<h3><%=book.booktitle%></h3>
-<img src="<%=book.bookcover%>">
-<label>ISBN: </label> <%=book.isbn%> <br>
-<label>Author:</label> <%=book.bookauthor%> <br>
- <label>My Note: </label>  <textarea name="note"><%= book.note %></textarea> <br>
-  <label>My Rating </label> <select name="rating">
-    <% for (let i = 1; i <= 5; i++) { %>
-      <option value="<%= i %>" <%= book.rating == i ? 'selected' : '' %>><%= i %></option>
-    <% } %>
-  </select><br></select><br>
-
-  <label>Note Added: </label><%=book.dateread.toLocaleDateString('en-GB')%>
-</label>
-
-<input type="hidden" name="id" value="<%= book.id %>">
-<input type="submit" value="Update post" class="addButton">
-</form>
-
-<%- include("./partials/footer.ejs")%>
+<%- include("./partials/footer.ejs") %>
